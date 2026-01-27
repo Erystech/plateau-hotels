@@ -1,1 +1,24 @@
 @import "tailwindcss";
+
+@theme { 
+  /* === PRIMARY (Dark Green) === */
+  --color-primary: #0b4011;
+  --color-primary-dark: #072a0c;
+  --color-primary-light: #0f5c17;
+  
+  /* === BACKGROUNDS === */
+  --color-secondary: #faf9f6;
+  
+  /* === ACCENTS === */
+  --color-accent: #d4a574;
+  --color-accent-dark: #b8956a;
+  
+  /* === TEXT/NEUTRAL === */
+  --color-neutral-dark: #1a1a1a;
+  --color-neutral-medium: #4a4a4a;
+  --color-neutral-light: #e5e5e5;
+  
+  /* === STATUS === */
+  --color-success: #10b981;
+  --color-error: #ef4444;
+}
