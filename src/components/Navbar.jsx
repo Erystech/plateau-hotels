@@ -5,7 +5,7 @@ import HamburgerButton from "./HamburgerButton";
 function Navbar() {
     const [open, setOpen] = useState(false);
   return (
-    <nav className="bg-secondary sticky top-0 w-full p-4 shadow-md">
+    <nav className="bg-secondary sticky top-0 w-full p-4 shadow-md z-100">
       <div className="flex justify-between items-center">
         <h1 className="text-primary italic">Plateau Hotels</h1>
 
