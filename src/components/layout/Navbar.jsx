@@ -1,6 +1,7 @@
 import React, {useState} from "react";
-import Button from "./buttons";
+import Button from "../ui/buttons";
 import HamburgerButton from "./HamburgerButton";
+import { Link } from "react-router-dom";
 
 function Navbar() {
     const [open, setOpen] = useState(false);
@@ -12,10 +13,18 @@ function Navbar() {
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-4">
           <ul className="flex gap-4">
-            <li><a href="/home">Home</a></li>
-            <li><a href="/rooms">Rooms</a></li>
-            <li><a href="/about">About Us</a></li>
-            <li><a href="/contact">Contact Us</a></li>
+            <li>
+              <Link to= "/"> Home </Link>
+            </li>
+            <li>
+              <Link to= "/Rooms"> Rooms </Link>
+            </li>
+            <li>
+              <Link to= "/About"> About Us </Link>
+            </li>
+            <li>
+              <Link to= "/contact"> Contact Us </Link>
+            </li>
           </ul>
           <Button variant="primary">Book Now</Button>
         </div>
@@ -31,40 +40,40 @@ function Navbar() {
         <div className="md:hidden">
           <ul className="flex flex-col gap-2 mt-4">
             <li>
-              <a 
-                href="/home" 
+              <Link 
+                to="/" 
                 className="block py-2 text-neutral-dark hover:text-primary transition-colors"
-                onClick={() => setOpen(false)} // Close menu when link clicked
+                onClick={() => setOpen(false)} 
               >
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a 
-                href="/rooms" 
+              <Link 
+                to="/Rooms" 
                 className="block py-2 text-neutral-dark hover:text-primary transition-colors"
-                onClick={() => setOpen(false)}
+                onClick={() => setOpen(false)} 
               >
                 Rooms
-              </a>
+              </Link>
             </li>
             <li>
-              <a 
-                href="/about" 
+              <Link 
+                to="/About" 
                 className="block py-2 text-neutral-dark hover:text-primary transition-colors"
-                onClick={() => setOpen(false)}
+                onClick={() => setOpen(false)} 
               >
                 About Us
-              </a>
+              </Link>
             </li>
             <li>
-              <a 
-                href="/contact" 
+              <Link 
+                to="/contact" 
                 className="block py-2 text-neutral-dark hover:text-primary transition-colors"
-                onClick={() => setOpen(false)}
+                onClick={() => setOpen(false)} 
               >
                 Contact Us
-              </a>
+              </Link>
             </li>
           </ul>
           <Button variant="primary" fullWidth className="mt-4">

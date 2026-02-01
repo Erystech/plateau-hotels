@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Button from './buttons';
+import Button from '../ui/buttons';
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -7,17 +7,17 @@ const Hero = () => {
   // Hero images array
   const slides = [
     {
-      image: '/src/assets/images/hero-img1.jpg', 
+      image: '/images/hero-img1.jpg', 
       title: 'Experience Luxury Redefined',
       subtitle: 'Discover unparalleled comfort in the heart of paradise',
     },
     {
-      image: '/src/assets/images/hero-img2.jpg',
+      image: '/images/hero-img2.jpg',
       title: 'Your Perfect Escape Awaits',
       subtitle: 'Indulge in world-class hospitality and breathtaking views',
     },
     {
-      image: '/src/assets/images/hero-img3.jpg',
+      image: '/images/hero-img3.jpg',
       title: 'Where Memories Are Made',
       subtitle: 'Create unforgettable moments in our luxurious retreat',
     },
