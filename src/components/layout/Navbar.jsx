@@ -8,7 +8,7 @@ function Navbar() {
   return (
     <nav className="bg-secondary sticky top-0 w-full p-4 shadow-md z-100">
       <div className="flex justify-between items-center">
-        <h1 className="text-primary italic">Plateau Hotels</h1>
+        <h1 className="text-primary italic cursor-pointer" >Plateau Hotels</h1>
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-4">
