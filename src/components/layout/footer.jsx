@@ -2,6 +2,16 @@ import React from "react";
 import Icons from "../ui/Icons";
 
 const Footer = () => {
+    const FooterLink = ({ href = "#", children }) => (
+        
+            <a 
+            href={href} 
+            className="hover:text-secondary transition-colors duration-200 hover:translate-x-1 inline-block"
+            >
+            {children}
+            </a>
+        
+    );
     return (
        <footer className="bg-primary text-neutral-light">
             <div className="container mx-auto px-6 md:px-12 lg:px-40 py-16">
@@ -96,36 +106,24 @@ const Footer = () => {
                             Services
                         </h2>
                         <ul className="space-y-2 text-sm">
-                            <li>
-                                <a href="#" className="hover:text-secondary transition-colors duration-200 hover:translate-x-1 inline-block">
-                                    The Resort
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="hover:text-secondary transition-colors duration-200 hover:translate-x-1 inline-block">
-                                    Booking
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="hover:text-secondary transition-colors duration-200 hover:translate-x-1 inline-block">
-                                    Our Rooms
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="hover:text-secondary transition-colors duration-200 hover:translate-x-1 inline-block">
-                                    Amenities
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="hover:text-secondary transition-colors duration-200 hover:translate-x-1 inline-block">
-                                    Media Center
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="hover:text-secondary transition-colors duration-200 hover:translate-x-1 inline-block">
-                                    Business
-                                </a>
-                            </li>
+                            
+                                <FooterLink>The Resort</FooterLink>
+                            
+                            
+                                <FooterLink>Booking</FooterLink>
+                            
+                            
+                                <FooterLink>Our Rooms</FooterLink>
+                            
+                            
+                                <FooterLink>Amenities</FooterLink>
+                            
+                            
+                                <FooterLink>Media Center</FooterLink>
+                            
+                            
+                                <FooterLink>Business</FooterLink>
+                            
                         </ul>
                     </div>
 
@@ -135,31 +133,21 @@ const Footer = () => {
                             Quick Links
                         </h2>
                         <ul className="space-y-2 text-sm">
-                            <li>
-                                <a href="#" className="hover:text-secondary transition-colors duration-200 hover:translate-x-1 inline-block">
-                                    Our Clients
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="hover:text-secondary transition-colors duration-200 hover:translate-x-1 inline-block">
-                                    Contact
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="hover:text-secondary transition-colors duration-200 hover:translate-x-1 inline-block">
-                                    Help Center
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="hover:text-secondary transition-colors duration-200 hover:translate-x-1 inline-block">
-                                    News
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="hover:text-secondary transition-colors duration-200 hover:translate-x-1 inline-block">
-                                    Career
-                                </a>
-                            </li>
+                            
+                                <FooterLink>Our Clients</FooterLink>
+                            
+                            
+                                <FooterLink>Contact</FooterLink>
+                            
+                            
+                                <FooterLink>Help Center</FooterLink>
+                            
+                            
+                                <FooterLink>News</FooterLink>
+                            
+                            
+                                <FooterLink>Career</FooterLink>
+                            
                         </ul>
                     </div>
                 </div>
@@ -175,16 +163,12 @@ const Footer = () => {
                             All rights reserved.
                         </p>
                         <ul className="flex gap-6">
-                            <li>
-                                <a href="#" className="hover:text-secondary transition-colors duration-200">
-                                    Privacy Policy
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="hover:text-secondary transition-colors duration-200">
-                                    Terms & Conditions
-                                </a>
-                            </li>
+                            
+                                <FooterLink>Privacy Policy</FooterLink>
+                           
+                           
+                                <FooterLink>Terms & Conditions</FooterLink>
+                            
                         </ul>
                     </div>
                 </div>

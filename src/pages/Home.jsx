@@ -12,9 +12,6 @@ const Home = () => {
         <>
             <Hero />
             <FeaturedRooms />
-            <Routes>
-                <Route path="/rooms" element={<Rooms />} />
-            </Routes>
             < Facilities />
             <Footer />
 

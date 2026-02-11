@@ -20,7 +20,7 @@ const RoomDetail = () => {
                 <img 
                 src={room.image} 
                 alt={room.title}
-                className="w-full h-[400px] object-cover rounded-lg"
+                className="w-full h-64 md:h-[400px] object-cover rounded-lg"
                 />
                 
                 {/* Title */}

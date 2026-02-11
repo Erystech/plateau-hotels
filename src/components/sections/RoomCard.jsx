@@ -23,7 +23,7 @@ const RoomCard = ({
   const isFeatured = variant === "featured";
 
   return (
-    <div className="bg-secondary rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+    <div className="bg-secondary rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300$ {isFeatured ? 'w-full' : 'w-full max-w-sm'}`}"
       style={{
         width: isFeatured ? "100%" : "w-80" 
       }}
