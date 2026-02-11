@@ -31,6 +31,7 @@ const FeaturedRooms = () => {
           {featuredRooms.map(room => (
             <RoomCard 
               key={room.id}
+              id={room.id}
               variant="featured"
               image={room.image}
               title={room.title}

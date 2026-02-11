@@ -1,7 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../ui/buttons";
 
 const RoomCard = ({ 
+  id,
   image = "",
   title = "",
   description = "",
@@ -9,8 +11,15 @@ const RoomCard = ({
   beds = 0,
   price = 0,
   onBook,
-  variant = "full" // "full" for rooms page, "featured" for homepage
+  variant = "full" 
 }) => {
+  const navigate = useNavigate(); 
+
+  const handleViewDetails = () => {
+    navigate(`/rooms/${id}`); 
+  };
+
+
   const isFeatured = variant === "featured";
 
   return (
@@ -91,16 +100,16 @@ const RoomCard = ({
           </div>
         )}
 
-        {/* Optional simple button for featured variant */}
-        {isFeatured && (
+        
+        
           <Button 
             variant="secondary" 
-            onClick={onBook}
+            onClick={handleViewDetails}
             aria-label={`View ${title}`}
           >
             View Details
           </Button>
-        )}
+        
       </div>
     </div>
   );
