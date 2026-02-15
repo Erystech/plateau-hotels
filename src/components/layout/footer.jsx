@@ -105,7 +105,7 @@ const Footer = () => {
                         <h2 className="text-lg font-semibold text-secondary uppercase tracking-wide">
                             Services
                         </h2>
-                        <ul className="space-y-2 text-sm">
+                        <ul className="flex flex-col space-y-2 text-sm">
                             
                                 <FooterLink>The Resort</FooterLink>
                             
@@ -132,7 +132,7 @@ const Footer = () => {
                         <h2 className="text-lg font-semibold text-secondary uppercase tracking-wide">
                             Quick Links
                         </h2>
-                        <ul className="space-y-2 text-sm">
+                        <ul className="flex flex-col space-y-2 text-sm">
                             
                                 <FooterLink>Our Clients</FooterLink>
                             
@@ -163,12 +163,8 @@ const Footer = () => {
                             All rights reserved.
                         </p>
                         <ul className="flex gap-6">
-                            
                                 <FooterLink>Privacy Policy</FooterLink>
-                           
-                           
                                 <FooterLink>Terms & Conditions</FooterLink>
-                            
                         </ul>
                     </div>
                 </div>

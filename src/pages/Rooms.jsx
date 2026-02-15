@@ -3,6 +3,7 @@ import roomsData from "../data/roomsData";
 import RoomCategory from "../components/ui/RoomCategory";
 import RoomCard from "../components/sections/RoomCard";
 
+
 const Rooms = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
 
@@ -30,6 +31,7 @@ const Rooms = () => {
           />
         ))}
       </div>
+      
     </div>
   );
 };

@@ -86,7 +86,7 @@ const RoomCard = ({
           <div className="flex flex-col pt-2">
             <div className="flex items-baseline gap-4 mb-2">
               <span className="text-3xl font-bold text-accent">
-                ${price}
+                 ₦{price}
               </span>
               <span className="text-sm font-bold text-gray-500">per night</span>
             </div>

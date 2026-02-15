@@ -4,11 +4,11 @@ import Icons from "../ui/Icons";
 
 const Facilities = () => {
     return (
-        <section className="bg-accent-dark">
-            <span className="inline-block text-sm font-semibold text-neutral-light uppercase tracking-widest mb-3">
+        <section className="bg-accent-dark py-20">
+            <span className="block text-center text-sm font-semibold text-neutral-light uppercase tracking-widest mb-3">
                 Facilities
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-center text-4xl md:text-5xl font-bold text-gray-900 mb-4">
                 Hotel Facilities
             </h2>
             <div className="grid grid-cols-1 m-auto md:grid-cols-2 lg:grid-cols-3 gap-4 w-[80%]">
