@@ -30,7 +30,7 @@ const RoomCard = ({
     >
       <div className="relative h-[250px] w-full overflow-hidden">
         <img 
-          src={image}
+          src={image[0]}
           alt={title}
           className="h-full w-full object-cover rounded-t-2xl hover:scale-105 transition-transform duration-300"
         />

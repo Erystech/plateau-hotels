@@ -12,17 +12,39 @@ const RoomDetail = () => {
     if (!room) {
         return <div>Room not found!</div>;
     }
+    
 
     return (
         <div>
             <main className="max-w-7xl mx-auto px-6 py-10">
 
                 {/* ── Hero Image ── */}
-                <img
-                    src={room.image}
-                    alt={room.title}
-                    className="w-full h-64 md:h-[420px] object-cover rounded-2xl mb-10"
-                />
+                <div className="mb-6 cursor-pointer">
+                    <img
+                        src={room.image[0]}
+                        alt={`${room.title} - Main view`}
+                        className="w-full h-64 md:h-[480px] object-cover rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
+                    />
+                </div>
+                 {/* ── 4-image grid below hero ── */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
+                    {room.image.slice(1, 5).map((img, index) => (
+                        <div
+                            key={index}
+                            className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+                        >
+                            <img
+                                src={img}
+                                alt={`${room.title} - View ${index + 2}`}
+                                className="w-full h-32 md:h-40 object-cover group-hover:scale-105 transition-transform duration-500"
+                            />
+                            {/* Subtle overlay on hover */}
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+                            
+                            
+                        </div>
+                    ))}
+                </div>
 
                 {/* ── Two-column layout: details (left) + booking form (right) ── */}
                 <div className="flex flex-col lg:flex-row gap-12 items-start">
@@ -80,6 +102,7 @@ const RoomDetail = () => {
 
                 </div>
             </main>
+            
 
             <Footer />
         </div>

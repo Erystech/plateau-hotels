@@ -1,50 +1,93 @@
 import React from "react";
 import Icons from "../ui/Icons";
 
-
 const Facilities = () => {
+    const facilities = [
+        {
+            icon: "rooms",
+            title: "Rooms & Suites",
+            description: "Varied accommodations from standard to luxury suites, each thoughtfully designed with premium amenities and refined comfort.",
+        },
+        {
+            icon: "security",
+            title: "24-Hour Security",
+            description: "Round-the-clock on-site personnel and comprehensive surveillance. Secure storage available for your peace of mind.",
+        },
+        {
+            icon: "fitness",
+            title: "Fitness Center",
+            description: "State-of-the-art exercise equipment and free weights. Complemented by spa services including massages and facials.",
+        },
+        {
+            icon: "swimming",
+            title: "Swimming Pool",
+            description: "Indoor and outdoor pools for leisure or fitness, surrounded by lush landscaping and comfortable lounging areas.",
+        },
+        {
+            icon: "kitchen",
+            title: "Culinary Excellence",
+            description: "Award-winning chefs crafting both local and continental dishes, bringing world-class dining to your table.",
+        },
+    ];
+
     return (
-        <section className="bg-accent-dark py-20">
-            <span className="block text-center text-sm font-semibold text-neutral-light uppercase tracking-widest mb-3">
-                Facilities
-            </span>
-            <h2 className="text-center text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Hotel Facilities
-            </h2>
-            <div className="grid grid-cols-1 m-auto md:grid-cols-2 lg:grid-cols-3 gap-4 w-[80%]">
-                <div className="flex flex-col text-center items-center gap-2  bg-secondary rounded w-80">
-                    <Icons name="rooms"/>
-                    <h2>Rooms and Suites</h2>
-                    <p>Varied types of rooms, from standard to luxury suites, equipped with essentials like beds.</p>
+        <section className="relative bg-stone-50 py-24 overflow-hidden">
+            {/* Subtle decorative background pattern */}
+            <div
+                className="absolute inset-0 opacity-[0.02]"
+                style={{
+                    backgroundImage:
+                        "radial-gradient(circle at 2px 2px, #1c1917 1px, transparent 0)",
+                    backgroundSize: "40px 40px",
+                }}
+            />
+
+            <div className="relative z-10 max-w-7xl mx-auto px-6">
+                
+                {/* Section header */}
+                <div className="text-center mb-16">
+                    <p className="text-amber-600 text-xs tracking-[0.3em] uppercase mb-3 font-semibold">
+                        Our Offerings
+                    </p>
+                    <h2 className="text-4xl md:text-5xl font-serif text-stone-900 font-light mb-4">
+                        World-Class Facilities
+                    </h2>
+                    <p className="text-stone-500 text-sm max-w-2xl mx-auto leading-relaxed">
+                        Experience unparalleled amenities designed to elevate every moment of your stay
+                    </p>
                 </div>
-                <div className="flex flex-col text-center items-center gap-2  bg-secondary rounded w-80">
-                    <Icons name="security"/>
-                    <h2>24-hour Security</h2>
-                    <p>On-site security personnel and best surveillance. from standard to luxury suites,Secure storage for valuables.</p>
-                </div>
-                <div className="flex flex-col text-center items-center gap-2  bg-secondary rounded w-80">
-                    <Icons name="fitness"/>
-                    <h2>Fitness Center</h2>
-                    <p>Equipped with exercise machines and weights.Offering massages, facials, and other treatments.</p>
-                </div>
-                <div className="flex flex-col text-center items-center gap-2  bg-secondary rounded w-80">
-                    <Icons name="swimming"/>
-                    <h2>Swimming Pool</h2>
-                    <p>Indoor or outdoor pools for leisure or exercise.Offering massages, facials, and other treatments</p>
-                </div>
-                <div className="flex flex-col text-center items-center gap-2 bg-secondary rounded w-80">
-                    <Icons name="kitchen"/>
-                    <h2>Kitchen</h2>
-                    <p>Bringing the best meals. Both local an continental dishes. closer to you</p>
+
+                {/* Facility cards grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {facilities.map((facility, index) => (
+                        <div
+                            key={index}
+                            className="group relative bg-white rounded-2xl p-8 shadow-sm border border-stone-200 hover:shadow-xl hover:border-amber-200 transition-all duration-500"
+                            
+                        >
+                            {/* Decorative corner accent */}
+                            <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-amber-50 to-transparent rounded-bl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                            {/* Icon */}
+                            <div className="relative w-16 h-16 rounded-full bg-amber-100 flex items-center justify-center mb-6 group-hover:bg-amber-200 group-hover:scale-110 transition-all duration-300">
+                                <Icons name={facility.icon} />
+                            </div>
+
+                            {/* Title */}
+                            <h3 className="text-xl font-semibold text-stone-800 mb-3 group-hover:text-amber-600 transition-colors duration-300">
+                                {facility.title}
+                            </h3>
+
+                            {/* Description */}
+                            <p className="text-stone-500 text-sm leading-relaxed">
+                                {facility.description}
+                            </p>
+                        </div>
+                    ))}
                 </div>
             </div>
         </section>
-    )
-}
-
-
-
-
-
+    );
+};
 
 export default Facilities;
