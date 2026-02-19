@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Button from '../ui/buttons';
 import RoomChecker from '../ui/RoomChecker';
 
@@ -94,8 +95,12 @@ const Hero = () => {
                     animation: index === currentSlide ? 'fadeIn 1s ease-out 0.6s both' : 'none',
                   }}
                 >
-                  <Button variant="accent" size="lg">Book Your Stay</Button>
-                  <Button variant="primary" size="lg">Explore Rooms</Button>
+                  <Link to="/Rooms" >
+                    <Button variant="accent" size="lg">Book Your Stay</Button>
+                  </Link>
+                  <Link to="/Rooms" >
+                    <Button variant="primary" size="lg">Explore Rooms</Button>
+                  </Link>
                 </div>
               </div>
             </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import Icons from "../ui/Icons";
-
+import { Link } from "react-router-dom";
 const Footer = () => {
     const FooterLink = ({ href = "#", children }) => (
         
@@ -17,9 +17,11 @@ const Footer = () => {
             <div className="container mx-auto px-6 md:px-12 lg:px-40 py-16">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
                     <div className="space-y-6">
-                        <h1 className="text-2xl md:text-3xl font-bold italic text-secondary">
-                            Plateau Hotels
-                        </h1>
+                        <Link to="/">
+                            <h1 className="text-2xl md:text-3xl font-bold italic text-secondary mb-3">
+                                Plateau Hotels
+                            </h1>
+                        </Link>
                         <p className="text-neutral-light/80 text-sm">
                             Experience luxury and comfort at its finest. Your perfect getaway awaits.
                         </p>

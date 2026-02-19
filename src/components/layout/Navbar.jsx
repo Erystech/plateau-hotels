@@ -8,7 +8,12 @@ function Navbar() {
   return (
     <nav className="bg-secondary sticky top-0 w-full p-4 shadow-md z-100">
       <div className="flex justify-between items-center">
-        <h1 className="text-primary italic cursor-pointer" >Plateau Hotels</h1>
+        <Link to="/">
+          <h1 className="text-primary italic cursor-pointer">
+            Plateau Hotels
+          </h1>
+        </Link>
+
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-4">
@@ -26,7 +31,11 @@ function Navbar() {
               <Link to= "/contact"> Contact Us </Link>
             </li>
           </ul>
-          <Button variant="primary">Book Now</Button>
+          <Link to="/Rooms">
+            <Button variant="primary" fullWidth >
+              Book Now
+            </Button>
+          </Link>
         </div>
 
         {/* Hamburger icon */}
@@ -76,9 +85,12 @@ function Navbar() {
               </Link>
             </li>
           </ul>
-          <Button variant="primary" fullWidth className="mt-4">
-            Book Now
-          </Button>
+          <Link to="/Rooms" >
+            <Button variant="primary" fullWidth className="mt-4">
+              Book Now
+            </Button>
+          </Link>
+          
         </div>
       )}
     </nav>

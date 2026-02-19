@@ -6,7 +6,7 @@ function RoomCategory({ selectedCategory, onCategoryChange }) {
     const categories = ['all', 'deluxe', 'suite', 'standard'];
 
     return (
-        <div className="category-buttons flex justify-center gap-4 mb-8">
+        <div className="category-buttons grid grid-cols-2 gap-3 mb-8 lg:grid-cols-4 mx-auto md: grid-cols-4">
             {categories.map((category) => (
                 <Button
                     key={category}
