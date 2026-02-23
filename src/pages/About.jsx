@@ -1,15 +1,48 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import Button from "../components/ui/buttons";
 import Footer from "../components/layout/footer";
-import useRooms from "../hooks/useRooms";
 
 const About = () => {
-    // FIXED: Call the hook to get data
-    const { rooms, loading, error } = useRooms();
+    const stats = [
+        { number: "25+", label: "Years of Excellence" },
+        { number: "50K+", label: "Happy Guests" },
+        { number: "150+", label: "Luxury Rooms" },
+        { number: "98%", label: "Satisfaction Rate" },
+    ];
 
-    
+    const milestones = [
+        { year: "1998", title: "The Beginning", description: "Founded with a vision to redefine luxury hospitality in the Plateau region" },
+        { year: "2005", title: "Expansion", description: "Added 50 premium suites and our signature infinity pool" },
+        { year: "2012", title: "Recognition", description: "Awarded 5-Star status by the International Hospitality Board" },
+        { year: "2020", title: "Innovation", description: "Launched eco-friendly initiatives and smart room technology" },
+    ];
+
+    const values = [
+        {
+            icon: "❤️",
+            title: "Guest-Centric",
+            description: "Every decision we make starts with asking: How does this elevate our guest experience?"
+        },
+        {
+            icon: "🌿",
+            title: "Sustainability",
+            description: "Committed to eco-friendly practices that preserve our beautiful surroundings for generations."
+        },
+        {
+            icon: "⭐",
+            title: "Excellence",
+            description: "From the lobby to the penthouse, we maintain the highest standards in every detail."
+        },
+        {
+            icon: "🤝",
+            title: "Community",
+            description: "Deeply rooted in the local community, supporting artisans and local businesses."
+        },
+    ];
+
     return (
         <>
-
             {/* Hero Section */}
             <section className="relative bg-stone-900 text-white overflow-hidden">
                 <div
@@ -34,109 +67,134 @@ const About = () => {
                 </div>
             </section>
 
-            {/* Firebase Rooms Section */}
-            <section className="bg-stone-50 py-20">
-                <div className="max-w-7xl mx-auto px-6">
-                    <div className="text-center mb-12">
-                        <p className="text-amber-600 text-xs tracking-[0.3em] uppercase mb-3 font-semibold">
-                            From Firebase
-                        </p>
-                        <h2 className="text-4xl md:text-5xl font-serif text-stone-900 font-light">
-                            Available Rooms
-                        </h2>
-                    </div>
-
-                    {/* Loading State */}
-                    {loading && (
-                        <div className="text-center py-12">
-                            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-amber-600"></div>
-                            <p className="text-stone-500 mt-4">Loading available rooms...</p>
-                        </div>
-                    )}
-
-                    {/* Error State */}
-                    {error && (
-                        <div className="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
-                            <p className="text-red-600 font-medium">Error loading rooms</p>
-                            <p className="text-red-500 text-sm mt-2">{error}</p>
-                        </div>
-                    )}
-
-                    {/* Rooms Grid */}
-                    {!loading && !error && rooms.length > 0 && (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {rooms.map((room) => (
-                                <div
-                                    key={room.id}
-                                    className="bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-200 hover:shadow-xl hover:border-amber-200 transition-all duration-300"
-                                >
-                                    {/* Room Image (if available) */}
-                                    {room.image && (
-                                        <div className="h-48 overflow-hidden">
-                                            <img
-                                                src={room.image}
-                                                alt={room.name}
-                                                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                                            />
-                                        </div>
-                                    )}
-
-                                    <div className="p-6">
-                                        {/* Room Name */}
-                                        <h3 className="text-xl font-semibold text-stone-800 mb-2">
-                                            {room.name}
-                                        </h3>
-
-                                        {/* Price */}
-                                        <p className="text-amber-600 font-bold text-lg mb-4">
-                                            ${room.price}
-                                            <span className="text-stone-400 font-normal text-sm ml-1">
-                                                / night
-                                            </span>
-                                        </p>
-
-                                        {/* Capacity */}
-                                        {room.capacity && (
-                                            <p className="text-stone-600 text-sm mb-4">
-                                                <strong>Capacity:</strong> {room.capacity} people
-                                            </p>
-                                        )}
-
-                                        {/* Features */}
-                                        {room.features && room.features.length > 0 && (
-                                            <div>
-                                                <p className="text-stone-700 text-xs uppercase tracking-widest mb-2">
-                                                    Features
-                                                </p>
-                                                <ul className="space-y-1">
-                                                    {room.features.map((feature, index) => (
-                                                        <li
-                                                            key={index}
-                                                            className="flex items-center gap-2 text-stone-600 text-sm"
-                                                        >
-                                                            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 flex-shrink-0"></span>
-                                                            {feature}
-                                                        </li>
-                                                    ))}
-                                                </ul>
-                                            </div>
-                                        )}
-                                    </div>
+            {/* Story Section */}
+            <section className="bg-white py-20">
+                <div className="max-w-6xl mx-auto px-6">
+                    <div className="grid md:grid-cols-2 gap-16 items-center">
+                        
+                        {/* Left: Image placeholder */}
+                        <div className="relative">
+                            <div className="aspect-[4/5] bg-stone-200 rounded-2xl overflow-hidden">
+                                {/* Replace with actual image */}
+                                <div className="w-full h-full flex items-center justify-center text-stone-400 text-sm">
+                                    Hotel Exterior Image
                                 </div>
-                            ))}
+                            </div>
+                            {/* Decorative accent */}
+                            <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-amber-100 rounded-2xl -z-10" />
                         </div>
-                    )}
 
-                    {/* Empty State */}
-                    {!loading && !error && rooms.length === 0 && (
-                        <div className="text-center py-12">
-                            <p className="text-stone-500 text-lg">No rooms available at the moment.</p>
+                        {/* Right: Story */}
+                        <div>
+                            <p className="text-amber-600 text-xs tracking-[0.3em] uppercase mb-3 font-semibold">
+                                Our Story
+                            </p>
+                            <h2 className="text-4xl font-serif text-stone-900 font-light mb-6 leading-tight">
+                                Where Luxury Meets Authentic Hospitality
+                            </h2>
+                            <div className="space-y-4 text-stone-600 leading-relaxed">
+                                <p>
+                                    Founded in 1998, Plateau Hotels & Resort began with a simple yet ambitious vision: 
+                                    to create a sanctuary where world-class luxury meets the warmth of genuine Nigerian hospitality.
+                                </p>
+                                <p>
+                                    Nestled in the heart of Plateau State, our resort has grown from a modest 30-room boutique 
+                                    hotel into one of the region's most celebrated luxury destinations. What hasn't changed is our 
+                                    unwavering commitment to treating every guest like family.
+                                </p>
+                                <p>
+                                    Today, we're proud to be a cornerstone of the local community, employing over 200 staff members, 
+                                    partnering with local artisans, and setting the standard for sustainable luxury in Nigeria.
+                                </p>
+                            </div>
+                            <div className="mt-8 pt-8 border-t border-stone-200">
+                                <p className="text-stone-800 font-medium italic">
+                                    "Our guests don't just visit — they return. Because this is more than a hotel. 
+                                    It's a place where memories are made."
+                                </p>
+                                <p className="text-stone-500 text-sm mt-2">
+                                    — Phoebe Williams, Founder & CEO
+                                </p>
+                            </div>
                         </div>
-                    )}
+
+                    </div>
+                </div>
+            </section>
+
+            {/* Stats Section */}
+            <section className="bg-stone-900 py-16">
+                <div className="max-w-6xl mx-auto px-6">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                        {stats.map((stat, index) => (
+                            <div
+                                key={index}
+                                className="text-center"
+                                style={{
+                                    animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`,
+                                }}
+                            >
+                                <div className="text-4xl md:text-5xl font-serif font-light text-amber-400 mb-2">
+                                    {stat.number}
+                                </div>
+                                <div className="text-stone-400 text-sm tracking-wide">
+                                    {stat.label}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+           
+
+            {/* CTA Section */}
+            <section className="bg-stone-50 py-20 relative overflow-hidden">
+                <div
+                    className="absolute inset-0 opacity-5"
+                    style={{
+                        backgroundImage:
+                            "radial-gradient(circle at 2px 2px, #c9a96e 1px, transparent 0)",
+                        backgroundSize: "40px 40px",
+                    }}
+                />
+                <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+                    <h2 className="text-4xl md:text-5xl font-serif text-stone-900 font-light mb-6">
+                        Experience the Plateau Difference
+                    </h2>
+                    <p className="text-stone-600 text-lg mb-8 max-w-2xl mx-auto">
+                        Join thousands of guests who've made Plateau Hotels their home away from home
+                    </p>
+                    <div className="flex flex-wrap gap-4 justify-center">
+                        <Link to="/rooms">
+                            <Button>
+                                Book Your Stay
+                            </Button>
+                        </Link>
+                        <Link to="/rooms">
+                            <Button variant="secondary" >
+                                Explore Our Rooms
+                            </Button>
+                        </Link>    
+                    </div>
                 </div>
             </section>
 
             <Footer />
+
+            {/* CSS Animations */}
+            <style>{`
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+            `}</style>
         </>
     );
 };
