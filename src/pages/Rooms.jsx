@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import useRooms from "../hooks/useRooms";
 import RoomCategory from "../components/ui/RoomCategory";
 import RoomCard from "../components/sections/RoomCard";
@@ -38,6 +38,10 @@ const Rooms = () => {
     });
   };
 
+
+  const navigate = useNavigate();
+
+
   return (
     <>
 	<h1 className="mt-2 text-center text-5xl md:text-6xl font-serif font-light leading-tight">
@@ -70,7 +74,7 @@ const Rooms = () => {
                 </div>
               </div>
               <button
-                onClick={() => window.location.href = '/rooms'}
+                onClick={() => navigate('/rooms')}
                 className="text-amber-600 hover:text-amber-700 text-sm font-medium"
               >
                 Clear Search
