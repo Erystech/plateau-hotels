@@ -18,7 +18,7 @@ const AdminUpload = () => {
                             Upload Room Images
                         </h1>
                         <p className="text-stone-500 text-sm">
-                            Select a room and upload images to Firebase Storage
+                            Select a room and upload images to supabase Storage
                         </p>
                     </div>
 
@@ -45,9 +45,6 @@ const AdminUpload = () => {
                             {/* LEFT: Room Selector */}
                             <div>
                                 <h2 className="text-xl font-semibold text-stone-800 mb-4 flex items-center gap-2">
-                                    <span className="w-8 h-8 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center text-sm font-bold">
-                                        1
-                                    </span>
                                     Select Room
                                 </h2>
                                 
@@ -104,9 +101,6 @@ const AdminUpload = () => {
                             {/* RIGHT: Image Uploader */}
                             <div>
                                 <h2 className="text-xl font-semibold text-stone-800 mb-4 flex items-center gap-2">
-                                    <span className="w-8 h-8 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center text-sm font-bold">
-                                        2
-                                    </span>
                                     Upload Images
                                 </h2>
                                 

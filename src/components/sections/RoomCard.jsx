@@ -4,7 +4,7 @@ import Button from "../ui/buttons";
 
 const RoomCard = ({ 
   id,
-  image = "",
+  image = [],
   title = "",
   description = "",
   guests = 0,
@@ -15,12 +15,18 @@ const RoomCard = ({
 }) => {
   const navigate = useNavigate(); 
 
-  const handleViewDetails = () => {
+  const handleViewDetails = (e) => {
+    e.preventDefault();
     navigate(`/rooms/${id}`); 
   };
 
 
   const isFeatured = variant === "featured";
+
+
+  const imageUrl = Array.isArray(image) && image.length > 0 
+    ? image[0] 
+    : (typeof image === 'string' && image !== "" ? image : "/images/regular-room.jpg"); 
 
   return (
     <Link 
@@ -29,14 +35,14 @@ const RoomCard = ({
           isFeatured ? "w-full" : "w-full max-w-sm"
         }`}
     >
-      <div className="bg-secondary rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300$ {isFeatured ? 'w-full' : 'w-full max-w-sm'}`}"
+      <div className="bg-secondary rounded-2xl overflow-hidden h-full flex flex-col"
         style={{
           width: isFeatured ? "100%" : "w-80" 
         }}
       >
         <div className="relative h-[250px] w-full overflow-hidden">
           <img 
-            src={image}
+            src={imageUrl}
             alt={title}
             className="h-full w-full object-cover rounded-t-2xl hover:scale-105 transition-transform duration-300"
           />
