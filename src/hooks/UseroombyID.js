@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../supabase";
 
-
 const useRoomById = (roomId) => {
     const [room, setRoom] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -17,22 +16,28 @@ const useRoomById = (roomId) => {
         const fetchRoom = async () => {
             try {
                 setLoading(true);
-                const roomDocRef = doc(db, "rooms", roomId);
-                const roomDoc = await getDoc(roomDocRef);
+                
+                // Supabase query to get a single room by matching the ID
+                const { data, error } = await supabase
+                    .from('rooms')
+                    .select('*')
+                    .eq('id', roomId)
+                    .single(); // .single() tells Supabase to return an object instead of an array
 
-                if (roomDoc.exists()) {
-                    setRoom({
-                        id: roomDoc.id,
-                        ...roomDoc.data(),
-                    });
+                if (error) {
+                    throw error;
+                }
+
+                if (data) {
+                    setRoom(data);
                 } else {
                     setError("Room not found");
                 }
-                setLoading(false);
             } catch (err) {
-                console.error("Error fetching room:", err);
+                console.error("Error fetching room:", err.message);
                 setError(err.message);
-                setLoading(false);
+            } finally {
+                 setLoading(false);
             }
         };
 
@@ -41,6 +46,5 @@ const useRoomById = (roomId) => {
 
     return { room, loading, error };
 };
-
 
 export default useRoomById;
