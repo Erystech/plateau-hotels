@@ -8,7 +8,6 @@ import Home from './pages/Home';
 import Rooms from './pages/Rooms';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import firebase from 'firebase/compat/app';
 import AdminUpload from './pages/adminUpload';
 function App() {
   return (

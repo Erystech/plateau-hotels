@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { db } from "../firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { supabase } from "../supabase";
+
 
 
 
@@ -12,18 +12,19 @@ const useRooms = () => {
     useEffect( () =>{
         const fetchRooms =async ()=>{
             try {
-                const roomCollectionRef = collection(db, "rooms");
-                const querySnapshot = await getDocs(roomCollectionRef);
+                const { data, error } = await supabase
+                    .from('rooms')
+                    .select('*');
 
-                const roomsData = querySnapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    ...doc.data(),
-                }));
+                if(error) {
+                    throw error;
+                }
 
-                setRooms(roomsData);
-                setLoading(false);
+                setRooms(data);
             }catch (error) {
                 console.error("Error fetching rooms:", error);
+                setError(error.message)
+            } finally {
                 setLoading(false);
             }
         };

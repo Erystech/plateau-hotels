@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { storage, db } from "../../firebase";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { doc, updateDoc, arrayUnion, setDoc, getDoc } from "firebase/firestore";
+import { supabase } from "../../supabase"; 
 
 const ImageUploader = ({ roomId }) => {
     const [uploading, setUploading] = useState(false);
@@ -26,56 +24,66 @@ const ImageUploader = ({ roomId }) => {
         try {
             setProgress("Starting upload...");
 
-            // Upload each file
+            // Upload each file to Storage
             for (let i = 0; i < files.length; i++) {
                 const file = files[i];
                 setProgress(`Uploading ${i + 1} of ${files.length}: ${file.name}`);
                 
-                // Create a unique filename
+                // Create a unique filename 
                 const timestamp = Date.now();
-                const fileName = `rooms/${roomId}/${timestamp}_${file.name}`;
+                const cleanFileName = file.name.replace(/[^a-zA-Z0-9.]/g, '_');
+                const filePath = `rooms/${roomId}/${timestamp}_${cleanFileName}`;
                 
-                console.log(`Uploading to: ${fileName}`);
+                console.log(`Uploading to: ${filePath}`);
                 
-                // Create storage reference
-                const storageRef = ref(storage, fileName);
+                // Upload to the 'room-images' bucket
+                const { error: uploadError } = await supabase.storage
+                    .from('room-images')
+                    .upload(filePath, file, {
+                        cacheControl: '3600',
+                        upsert: false
+                    });
+
+                if (uploadError) throw uploadError;
                 
-                // Upload file
-                await uploadBytes(storageRef, file);
                 console.log(`Uploaded: ${file.name}`);
                 
-                // Get download URL
-                const downloadUrl = await getDownloadURL(storageRef);
-                urls.push(downloadUrl);
-                
-                console.log(`Download URL: ${downloadUrl}`);
+                // Get the public download URL
+                const { data: { publicUrl } } = supabase.storage
+                    .from('room-images')
+                    .getPublicUrl(filePath);
+                    
+                urls.push(publicUrl);
+                console.log(`Public URL: ${publicUrl}`);
             }
 
-            setProgress("Updating Firestore...");
+            setProgress("Updating Database...");
 
-            // Check if document exists and has image field
-            const roomRef = doc(db, "rooms", roomId);
-            const roomDoc = await getDoc(roomRef);
+            // 2. Update Supabase Database 
+            
+            // First, fetch the current room to get the existing images array
+            const { data: roomDoc, error: fetchError } = await supabase
+                .from('rooms')
+                .select('image')
+                .eq('id', roomId)
+                .single();
 
-            if (roomDoc.exists()) {
-                const roomData = roomDoc.data();
-                
-                if (roomData.image && Array.isArray(roomData.image)) {
-                    // Image field exists, use arrayUnion
-                    await updateDoc(roomRef, {
-                        image: arrayUnion(...urls)
-                    });
-                } else {
-                    // Image field doesn't exist, create it
-                    await updateDoc(roomRef, {
-                        image: urls
-                    });
-                }
-            } else {
-                setError("Room document not found in Firestore");
-                setUploading(false);
-                return;
+            if (fetchError) {
+                 throw new Error("Room document not found in database");
             }
+
+            // Merge existing images with the newly uploaded ones
+            // If roomDoc.image is null/undefined, it defaults to an empty array
+            const existingImages = roomDoc.image || [];
+            const updatedImages = [...existingImages, ...urls];
+
+            // Update the room record with the combined array
+            const { error: updateError } = await supabase
+                .from('rooms')
+                .update({ image: updatedImages })
+                .eq('id', roomId);
+
+            if (updateError) throw updateError;
 
             setUploadedUrls(urls);
             setProgress("");

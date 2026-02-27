@@ -1,7 +1,7 @@
 // hooks/useRoomById.js
 import { useEffect, useState } from "react";
-import { db } from "../firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { supabase } from "../supabase";
+
 
 const useRoomById = (roomId) => {
     const [room, setRoom] = useState(null);
