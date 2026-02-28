@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useRooms from "../../hooks/useRooms";
 import RoomCard from "./RoomCard";
+import RoomCardSkeleton from "../ui/RoomCardSkeleton";
 import { Link } from "react-router-dom";
 
 
@@ -47,9 +48,10 @@ const FeaturedRooms = () => {
 
         {/* Loading State */}
         {loading && (
-          <div className="text-center py-12">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-amber-600"></div>
-            <p className="text-stone-500 mt-4">Loading featured rooms...</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[1, 2, 3].map((n) => (
+              <RoomCardSkeleton key={n} />
+            ))}
           </div>
         )}
 

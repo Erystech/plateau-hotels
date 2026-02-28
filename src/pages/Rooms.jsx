@@ -3,7 +3,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import useRooms from "../hooks/useRooms";
 import RoomCategory from "../components/ui/RoomCategory";
 import RoomCard from "../components/sections/RoomCard";
-
+import RoomCardSkeleton from "../components/ui/RoomCardSkeleton";
 import Footer from "../components/layout/footer";
 
 const Rooms = () => {
@@ -91,9 +91,10 @@ const Rooms = () => {
 
         {/* Loading State */}
         {loading && (
-          <div className="text-center py-20">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-amber-600"></div>
-            <p className="text-stone-500 mt-4">Loading rooms...</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[1, 2, 3, 4, 5, 6].map((n) => (
+              <RoomCardSkeleton key={n} />
+            ))}
           </div>
         )}
 
