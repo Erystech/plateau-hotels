@@ -6,6 +6,9 @@ import RoomChecker from '../ui/RoomChecker';
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  const [isHovered, setIsHovered] = useState(false);
+
+
   const slides = [
     {
       image: '/images/hero-img1.webp',
@@ -25,11 +28,12 @@ const Hero = () => {
   ];
 
   useEffect(() => {
+    if (isHovered) return;
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, [slides.length]);
+  }, [slides.length, isHovered]);
 
   const goToSlide = (index) => setCurrentSlide(index);
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -37,6 +41,12 @@ const Hero = () => {
 
   return (
     <div className="relative mb-20">
+      
+        onMouseEnter = {() => 
+        setIsHovered(true)} and onMouseLeave={() => setIsHovered(false)
+      }
+      
+
 
       <div className="relative h-screen w-full overflow-hidden">
 

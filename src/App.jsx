@@ -8,10 +8,12 @@ import Home from './pages/Home';
 import Rooms from './pages/Rooms';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import ScrollToTop from './utils/ScrollToTop';
 import AdminUpload from './pages/adminUpload';
 function App() {
   return (
     <>
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

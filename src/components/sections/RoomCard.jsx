@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../ui/buttons";
 
@@ -23,6 +23,8 @@ const RoomCard = ({
 
   const isFeatured = variant === "featured";
 
+  const [isLoading, setIsLoading] = useState(true);
+
 
   const imageUrl = Array.isArray(image) && image.length > 0 
     ? image[0] 
@@ -40,13 +42,21 @@ const RoomCard = ({
           width: isFeatured ? "100%" : "w-80" 
         }}
       >
-        <div className="relative h-[250px] w-full overflow-hidden">
-          <img 
+        <div
+          className={`relative h-[250px] w-full overflow-hidden bg-stone-200 ${
+            isLoading ? "animate-pulse" : ""
+          }`}
+        >
+          <img
             src={imageUrl}
             alt={title}
             loading="lazy"
             decoding="async"
-            className="h-full w-full object-cover rounded-t-2xl hover:scale-105 transition-transform duration-300"
+            onLoad={() => setIsLoading(false)}
+            className={`h-full w-full object-cover rounded-t-2xl 
+              transition-all duration-500 ease-out
+              ${isLoading ? "opacity-0" : "opacity-100 hover:scale-105"}
+            `}
           />
         </div>
 
