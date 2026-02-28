@@ -42,11 +42,6 @@ const Hero = () => {
   return (
     <div className="relative mb-20">
       
-        onMouseEnter = {() => 
-        setIsHovered(true)} and onMouseLeave={() => setIsHovered(false)
-      }
-      
-
 
       <div className="relative h-screen w-full overflow-hidden">
 
