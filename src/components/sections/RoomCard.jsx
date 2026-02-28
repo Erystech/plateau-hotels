@@ -44,6 +44,8 @@ const RoomCard = ({
           <img 
             src={imageUrl}
             alt={title}
+            loading="lazy"
+            decoding="async"
             className="h-full w-full object-cover rounded-t-2xl hover:scale-105 transition-transform duration-300"
           />
         </div>
