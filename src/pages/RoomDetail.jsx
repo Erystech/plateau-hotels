@@ -1,12 +1,55 @@
-import React from "react";
+import React, { use, useState } from "react";
 import { useParams } from 'react-router-dom';
 import useRoomById from "../hooks/UseroombyID";
 import Footer from "../components/layout/footer";
 import BookingForm from "../components/layout/BookingForm";
+import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette";
 
 const RoomDetail = () => {
     const { id } = useParams();
     const {room, loading, error } = useRoomById(id);
+
+    const [lightboxOpen, setLightboxOpen] = useState(false);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    //lightbox functions
+    const openLightbox = (i) => {
+        setCurrentImageIndex(i);
+        setLightboxOpen(true);
+
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeLightbox = () => {
+        setLightboxOpen(false);
+        document.body.style.overflow = 'unset';
+    };
+
+    const nextImage = () => {
+        if(room?.image) {
+            setCurrentImageIndex((prev) => (prev + 1) % room.image.length);
+        }
+    };
+
+    const prevImage = () => {
+        if (room?.image) {
+            setCurrentImageIndex((prev) => (prev - 1 + room.image.length) % room.image.length)
+        }
+    };
+
+    //Keyboard navigation 
+    React.useEffect(() => {
+        const handlekeyDown = (e) => {
+            if(!lightboxOpen) return;
+
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+        };
+
+        window.addEventListener('keydown', handlekeyDown);
+
+    }, [lightboxOpen, currentImageIndex]);
 
     if (loading) {
         return (
@@ -39,13 +82,21 @@ const RoomDetail = () => {
             <main className="max-w-7xl mx-auto px-6 py-10">
 
                 {/* ── Hero Image ── */}
-                <div className="mb-6 cursor-pointer" onClick={() => openLightbox(0)}>
+                <div
+                    className="relative group mb-6 cursor-pointer"
+                    onClick={() => openLightbox(0)}
+                    >
                     <img
                         src={room.image?.[0]}
                         alt={`${room.title} - Main view`}
                         className="w-full h-64 md:h-[480px] object-cover rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
                     />
+
+                    {/* Zoom Overlay */}
+                    
                 </div>
+                                
+
 
                 {/* ── 4-image grid below hero ── */}
                 {room.image && room.image.length > 1 && (
@@ -129,6 +180,90 @@ const RoomDetail = () => {
                 </div>
             </main>
             
+            {/* ── LIGHTBOX MODAL ── */}
+            {lightboxOpen && room.image && (
+                <div
+                    className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center animate-fadeIn"
+                    onClick={closeLightbox}
+                >
+                    {/* Close button */}
+                    <button
+                        onClick={closeLightbox}
+                        className="absolute top-4 right-4 md:top-6 md:right-6 text-white text-4xl w-12 h-12 flex items-center justify-center hover:bg-white/10 rounded-full transition-colors z-20"
+                        aria-label="Close gallery"
+                    >
+                        x
+                    </button>
+
+                    {/* Previous arrow */}
+                    <button
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            prevImage();
+                        }}
+                        className="absolute left-4 md:left-8 text-white text-4xl md:text-5xl w-12 h-12 md:w-16 md:h-16 flex items-center justify-center hover:bg-white/10 rounded-full transition-colors z-20"
+                        aria-label="Previous image"
+                    >
+                        ‹
+                    </button>
+
+                    {/* Image container */}
+                    <div
+                        className="relative max-w-7xl max-h-[90vh] w-full mx-4"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <img
+                            src={room.image[currentImageIndex]}
+                            alt={`${room.title || room.name} - Image ${currentImageIndex + 1}`}
+                            className="w-full h-full object-contain rounded-lg"
+                        />
+                        
+                        {/* Image counter & info */}
+                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+                            <div className="bg-black/70 backdrop-blur-sm text-white text-sm px-4 py-2 rounded-full">
+                                {currentImageIndex + 1} / {room.image.length}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Next arrow */}
+                    <button
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            nextImage();
+                        }}
+                        className="absolute right-4 md:right-8 text-white text-4xl md:text-5xl w-12 h-12 md:w-16 md:h-16 flex items-center justify-center hover:bg-white/10 rounded-full transition-colors z-20"
+                        aria-label="Next image"
+                    >
+                        ›
+                    </button>
+
+                    {/* Thumbnails */}
+                    <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex gap-2 overflow-x-auto max-w-[90vw] px-4 pb-2 scrollbar-hide">
+                        {room.image.map((img, index) => (
+                            <button
+                                key={index}
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setCurrentImageIndex(index);
+                                }}
+                                className={`flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden border-2 transition-all ${
+                                    index === currentImageIndex
+                                        ? 'border-amber-400 scale-110'
+                                        : 'border-white/30 hover:border-white/60'
+                                }`}
+                            >
+                                <img
+                                    src={img}
+                                    alt={`Thumbnail ${index + 1}`}
+                                    className="w-full h-full object-cover"
+                                />
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            )}
+
 
             <Footer />
         </div>
