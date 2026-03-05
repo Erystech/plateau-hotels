@@ -46,7 +46,7 @@ const About = () => {
                             <div className="aspect-[4/5] bg-stone-200 rounded-2xl overflow-hidden">
                                 {/* Replace with actual image */}
                                 <div className="w-full h-full flex items-center justify-center text-stone-400 text-sm">
-                                   <img src="public/images/plateau-hotels-exterior.webp" alt="Hotel exterior" />
+                                   <img src="/images/plateau-hotels-exterior.webp" alt="Hotel exterior" />
                                 </div>
                             </div>
                             {/* Decorative accent */}
