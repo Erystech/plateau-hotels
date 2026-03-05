@@ -9,38 +9,7 @@ const About = () => {
         { number: "50K+", label: "Happy Guests" },
         { number: "150+", label: "Luxury Rooms" },
         { number: "98%", label: "Satisfaction Rate" },
-    ];
-
-    const milestones = [
-        { year: "1998", title: "The Beginning", description: "Founded with a vision to redefine luxury hospitality in the Plateau region" },
-        { year: "2005", title: "Expansion", description: "Added 50 premium suites and our signature infinity pool" },
-        { year: "2012", title: "Recognition", description: "Awarded 5-Star status by the International Hospitality Board" },
-        { year: "2020", title: "Innovation", description: "Launched eco-friendly initiatives and smart room technology" },
-    ];
-
-    const values = [
-        {
-            icon: "❤️",
-            title: "Guest-Centric",
-            description: "Every decision we make starts with asking: How does this elevate our guest experience?"
-        },
-        {
-            icon: "🌿",
-            title: "Sustainability",
-            description: "Committed to eco-friendly practices that preserve our beautiful surroundings for generations."
-        },
-        {
-            icon: "⭐",
-            title: "Excellence",
-            description: "From the lobby to the penthouse, we maintain the highest standards in every detail."
-        },
-        {
-            icon: "🤝",
-            title: "Community",
-            description: "Deeply rooted in the local community, supporting artisans and local businesses."
-        },
-    ];
-
+    ];   
     return (
         <>
             {/* Hero Section */}
@@ -77,7 +46,7 @@ const About = () => {
                             <div className="aspect-[4/5] bg-stone-200 rounded-2xl overflow-hidden">
                                 {/* Replace with actual image */}
                                 <div className="w-full h-full flex items-center justify-center text-stone-400 text-sm">
-                                    Hotel Exterior Image
+                                   <img src="public/images/plateau-hotels exterior.webp" alt="Hotel exterior" />
                                 </div>
                             </div>
                             {/* Decorative accent */}
