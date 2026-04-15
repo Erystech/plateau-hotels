@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 function Navbar() {
     const [open, setOpen] = useState(false);
   return (
-    <nav className="bg-secondary sticky top-0 w-full p-4 shadow-md z-100">
+    <nav className="bg-secondary sticky top-0 w-full p-4 shadow-md z-50">
       <div className="flex justify-between items-center">
         <Link to="/">
           <h1 className="text-primary italic cursor-pointer">

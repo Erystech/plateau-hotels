@@ -109,7 +109,7 @@ const RoomChecker = () => {
       </div>
 
       {/* ── Guests ── */}
-      <div className="flex flex-col gap-1.5 w-full md:max-w-[130px] flex-shrink-0">
+      <div className="flex flex-col gap-1.5 w-full md:max-w-32.5 shrink-0">
         <label className="text-[10px] text-stone-500 uppercase tracking-widest font-medium">
           Guests
         </label>
@@ -130,7 +130,7 @@ const RoomChecker = () => {
       </div>
 
       {/* ── Submit ── */}
-      <div className="w-full md:w-auto flex-shrink-0">
+      <div className="w-full md:w-auto shrink-0">
         <Button 
           variant="accent" 
           type="submit"

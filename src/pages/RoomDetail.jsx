@@ -1,9 +1,8 @@
-import React, { use, useState } from "react";
+import React, {useState } from "react";
 import { useParams } from 'react-router-dom';
 import useRoomById from "../hooks/UseroombyID";
 import Footer from "../components/layout/footer";
 import BookingForm from "../components/layout/BookingForm";
-import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette";
 
 const RoomDetail = () => {
     const { id } = useParams();
@@ -48,6 +47,7 @@ const RoomDetail = () => {
         };
 
         window.addEventListener('keydown', handlekeyDown);
+        return() => window.removeEventListener('keydown', handlekeyDown);b
 
     }, [lightboxOpen, currentImageIndex]);
 

@@ -63,10 +63,12 @@ const Hero = () => {
                 backgroundImage: `url(${slide.image})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
+                loading: 'eager',
               }}
             >
               <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.45)' }} />
             </div>
+           
 
             <div className="relative h-full flex items-center justify-center text-center px-4 pb-24">
               <div className="max-w-4xl">
@@ -183,6 +185,11 @@ const Hero = () => {
             />
           ))}
         </div>
+         <div 
+                className="relative h-screen w-full overflow-hidden"
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+            ></div>
 
       </div>
 

@@ -294,7 +294,7 @@ const BookingForm = ({ roomName = "Deluxe Suite", pricePerNight = 45000 }) => {
 
                 {/* ── Submit ── */}
                 <div className="pt-1">
-                    <Button variant="accent" className="w-full justify-center">
+                    <Button variant="accent" type="submit" className="w-full justify-center">
                         Confirm Booking
                     </Button>
                     <p className="text-center text-stone-400 text-[11px] mt-3 tracking-wide">

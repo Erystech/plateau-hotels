@@ -10,15 +10,11 @@ const RoomCard = ({
   guests = 0,
   beds = 0,
   price = 0,
-  onBook,
   variant = "full" 
 }) => {
   const navigate = useNavigate(); 
 
-  const handleViewDetails = (e) => {
-    e.preventDefault();
-    navigate(`/rooms/${id}`); 
-  };
+  
 
 
   const isFeatured = variant === "featured";
@@ -43,7 +39,7 @@ const RoomCard = ({
         }}
       >
         <div
-          className={`relative h-[250px] w-full overflow-hidden bg-stone-200 ${
+          className={`relative h-62.5 w-full overflow-hidden bg-stone-200 ${
             isLoading ? "animate-pulse" : ""
           }`}
         >
@@ -66,7 +62,7 @@ const RoomCard = ({
             {title}
           </h2>
 
-          <p className="text-sm text-gray-600 line-clamp-2 min-h-[40px]">
+          <p className="text-sm text-gray-600 line-clamp-2 min-h-10">
             {description}
           </p>
 
@@ -116,7 +112,7 @@ const RoomCard = ({
               </div>
               <Button 
                 variant="primary" 
-                onClick={handleViewDetails}
+                onClick={(e) => e.stopPropagation()}
                 aria-label={`Book ${title}`}
               >
                 Book Now
@@ -128,7 +124,7 @@ const RoomCard = ({
           
             <Button 
               variant="secondary" 
-              onClick={handleViewDetails}
+              onClick={(e) => e.stopPropagation()}
               aria-label={`View ${title}`}
             >
               View Details

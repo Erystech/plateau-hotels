@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import useRooms from "../hooks/useRooms";
-import ImageUploader from "../components/ui/imageUploader";  
+import ImageUploader from "../components/ui/imageUploader"  
 import Footer from "../components/layout/footer";
 
 const AdminUpload = () => {
@@ -56,7 +56,7 @@ const AdminUpload = () => {
                                         </p>
                                     </div>
                                 ) : (
-                                    <div className="space-y-2 max-h-[600px] overflow-y-auto pr-2">
+                                    <div className="space-y-2 max-h-150 overflow-y-auto pr-2">
                                         {rooms.map((room) => (
                                             <button
                                                 key={room.id}

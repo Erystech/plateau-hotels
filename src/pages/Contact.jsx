@@ -65,19 +65,19 @@ const Contact = () => {
 
     const contactCards = [
         {
-            icon: "rooms",
+            icon: "phone",
             title: "Make a Call",
             subtitle: "Make a call for general enquiries",
             value: "+234-90-19942996",
         },
         {
-            icon: "rooms",
+            icon: "email",
             title: "Send a Mail",
             subtitle: "Send a mail for general enquiries",
             value: "info@plateauhotels.com",
         },
         {
-            icon: "rooms",
+            icon: "whatsapp",
             title: "Toll Free",
             subtitle: "Toll free number for staying guests",
             value: "+234-90-19942996",
@@ -106,7 +106,7 @@ const Contact = () => {
                     }}
                 />
                 <div className="relative z-10 max-w-6xl mx-auto px-6 py-20">
-                    <p className="text-accent text-sm tracking-[0.3em] uppercase mb-3 text-amber-400">
+                    <p className="text-accent text-sm tracking-[0.3em] uppercase mb-3">
                         Plateau Hotels &amp; Resort
                     </p>
                     <h1 className="text-5xl md:text-6xl font-serif font-light leading-tight">

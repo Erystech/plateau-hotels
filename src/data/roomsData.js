@@ -147,15 +147,13 @@
 
 export default roomsData;
 
-export function getRoomById(id) {
-  return roomsData.find(room => room.id === parseInt(id));
-}
+
 
 export function getFeaturedRooms() {
   return roomsData.filter(room => room.featured);
 }
 
 export function getRoomsByCategory(category) {
-  if (category === 'All') return rooms;
+  if (category === 'All') return roomsData;
   return roomsData.filter(room => room.category === category);
 }

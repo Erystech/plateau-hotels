@@ -143,7 +143,7 @@ const Rooms = () => {
             <button
               onClick={() => {
                 setSelectedCategory("all");
-                window.location.href = '/rooms';
+                navigate = '/rooms';
               }}
               className="mt-4 text-amber-600 hover:text-amber-700 font-medium"
             >
