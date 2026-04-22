@@ -35,11 +35,6 @@ const Facilities = () => {
             {/* Subtle decorative background pattern */}
             <div
                 className="absolute inset-0 opacity-[0.02]"
-                style={{
-                    backgroundImage:
-                        "radial-gradient(circle at 2px 2px, #1c1917 1px, transparent 0)",
-                    backgroundSize: "40px 40px",
-                }}
             />
 
             <div className="relative z-10 max-w-7xl mx-auto px-6">
@@ -66,7 +61,7 @@ const Facilities = () => {
                             
                         >
                             {/* Decorative corner accent */}
-                            <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-amber-50 to-transparent rounded-bl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            <div className="absolute top-0 right-0 w-16 h-16 bg-linear-to-br from-amber-50 to-transparent rounded-bl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                             {/* Icon */}
                             <div className="relative w-16 h-16 rounded-full bg-amber-100 flex items-center justify-center mb-6 group-hover:bg-amber-200 group-hover:scale-110 transition-all duration-300">

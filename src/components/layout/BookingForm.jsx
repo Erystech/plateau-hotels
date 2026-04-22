@@ -106,8 +106,7 @@ const BookingForm = ({ roomName = "Deluxe Suite", pricePerNight = 45000 }) => {
 
             {/* ── Header ── */}
             <div
-                className="px-6 py-5 text-white"
-                style={{ background: "linear-gradient(135deg, #1c1917 0%, #292524 100%)" }}
+                className="px-6 py-5 text-white bg-black"
             >
                 <p className="text-amber-400 text-[10px] tracking-[0.3em] uppercase mb-1">
                     Confirm Booking
