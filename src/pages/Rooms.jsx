@@ -44,8 +44,30 @@ const Rooms = () => {
 
   return (
     <>
+    <section className="relative bg-stone-900 text-white overflow-hidden">
+                <div
+                    className="absolute inset-0 opacity-10"
+                    style={{
+                        backgroundImage:
+                            "repeating-linear-gradient(-45deg, #c9a96e 0, #c9a96e 1px, transparent 0, transparent 50%)",
+                        backgroundSize: "20px 20px",
+                    }}
+                />
+                <div className="relative z-10 max-w-6xl mx-auto px-6 py-20">
+                    <p className="text-amber-400 text-sm tracking-[0.3em] uppercase mb-3">
+                        Plateau Hotels &amp; Resort
+                    </p>
+                    <h1 className="text-5xl md:text-6xl font-serif font-light leading-tight">
+                        Our Rooms & Suites
+                    </h1>
+                    <p className="mt-3 text-stone-400 text-sm tracking-wide">
+                        Home &nbsp;/&nbsp;
+                        <span className="text-amber-400">Rooms</span>
+                    </p>
+                </div>
+    </section>
 	<h1 className="mt-2 text-center text-5xl md:text-6xl font-serif font-light leading-tight">
-            Our Rooms & Suites
+            
           </h1>
      
       <div className="max-w-7xl mx-auto px-4 py-16">

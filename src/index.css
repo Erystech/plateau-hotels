@@ -21,4 +21,10 @@
   /* === STATUS === */
   --color-success: #10b981;
   --color-error: #ef4444;
+
+
+  /* === TEXT STYLES === */
+  --text-fluid-heading: clamp(2.5rem, 5vw, 4.5rem);
+  --text-fluid-parag: clamp(1.125rem, 2vw, 1.5rem);
+  --color-Pcolor: #faf9f6;
 }

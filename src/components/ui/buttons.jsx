@@ -19,7 +19,7 @@ const Button = ({
     secondary: 'border-2 border-primary text-primary bg-transparent hover:bg-primary hover:text-white',
     accent: 'bg-accent text-primary hover:opacity-90 hover:text-white active:scale-95',
     outline: 'border-2 border-neutral-light text-neutral-dark hover:border-primary hover:text-primary',
-    ghost: 'text-primary hover:bg-primary/10',
+    ghost: 'text-white bg-primary/40 hover:bg-primary',
   };
   
   

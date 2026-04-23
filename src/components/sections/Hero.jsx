@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import clsx from 'clsx';
+import heroSlides from '../../constants/heroSlides';
 import Button from '../ui/buttons';
 import RoomChecker from '../ui/RoomChecker';
 
@@ -9,104 +11,76 @@ const Hero = () => {
   const [isHovered, setIsHovered] = useState(false);
 
 
-  const slides = [
-    {
-      image: '/images/hero-img1.webp',
-      title: 'Experience Luxury Redefined',
-      subtitle: 'Discover unparalleled comfort in the heart of paradise',
-    },
-    {
-      image: '/images/hero-img2.webp',
-      title: 'Your Perfect Escape Awaits',
-      subtitle: 'Indulge in world-class hospitality and breathtaking views',
-    },
-    {
-      image: '/images/hero-img3.webp',
-      title: 'Where Memories Are Made',
-      subtitle: 'Create unforgettable moments in our luxurious retreat',
-    },
-  ];
+  
 
   useEffect(() => {
     if (isHovered) return;
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, [slides.length, isHovered]);
+  }, [heroSlides.length, isHovered]);
 
   const goToSlide = (index) => setCurrentSlide(index);
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
-  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
 
   return (
     <div className="relative mb-20">
       
 
       <div className="relative h-screen w-full overflow-hidden">
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
 
-        {/* ── Slides ── */}
-        {slides.map((slide, index) => (
+        {/* ── heroSlides ── */}
+        {heroSlides.map((slide, index) => (
           <div
             key={index}
-            style={{
-              position: 'absolute',
-              inset: 0,
-              opacity: index === currentSlide ? 1 : 0,
-              transition: 'opacity 1000ms ease-in-out',
-            }}
+            className={clsx(
+                'absolute inset-0 transition-opacity duration-1000 ease-in-out',
+                index === currentSlide ? "opacity-100" : "opacity-0"
+            )}
           >
             <div
+              className='absolute inset-0 bg-cover bg-center '
               style={{
-                position: 'absolute',
-                inset: 0,
                 backgroundImage: `url(${slide.image})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                loading: 'eager',
               }}
             >
-              <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.45)' }} />
+              <div className='absolute inset-0 bg-black/40' />
             </div>
            
 
             <div className="relative h-full flex items-center justify-center text-center px-4 pb-24">
               <div className="max-w-4xl">
                 <h1
-                  style={{
-                    fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
-                    fontWeight: 'bold',
-                    color: 'white',
-                    marginBottom: '1.5rem',
-                    animation: index === currentSlide ? 'fadeIn 1s ease-out' : 'none',
-                  }}
+                  className={clsx(
+                    'text-fluid-heading font-bold text-white mb-6 tracking-tight leading-tight',
+                    index === currentSlide ? 'fadeIn 1s ease-out' : 'none'
+                  )}
                 >
                   {slide.title}
                 </h1>
-                <p
-                  style={{
-                    fontSize: 'clamp(1.125rem, 2vw, 1.5rem)',
-                    color: '#faf9f6',
-                    marginBottom: '2rem',
-                    animation: index === currentSlide ? 'fadeIn 1s ease-out 0.3s both' : 'none',
-                  }}
+                <p 
+                className={clsx(
+                  'text-fluid-parag text-white/90 mb-8',
+                  index === currentSlide ? 'fadeIn 1s ease-out 0.3s both' : 'none'
+                )}
                 >
                   {slide.subtitle}
                 </p>
                 <div
-                  style={{
-                    display: 'flex',
-                    gap: '1rem',
-                    justifyContent: 'center',
-                    flexWrap: 'wrap',
-                    animation: index === currentSlide ? 'fadeIn 1s ease-out 0.6s both' : 'none',
-                  }}
+                  className={clsx(
+                    'flex gap-4 justify-center flex-wrap',
+                    index === currentSlide ? 'fadeIn 1s ease-out 0.6s both' : 'none'
+                  )}
                 >
                   <Link to="/Rooms" >
                     <Button variant="accent" size="lg">Book Your Stay</Button>
                   </Link>
                   <Link to="/Rooms" >
-                    <Button variant="primary" size="lg">Explore Rooms</Button>
+                    <Button variant="ghost" size="lg">Explore Rooms</Button>
                   </Link>
                 </div>
               </div>
@@ -117,68 +91,39 @@ const Hero = () => {
         
         <button
           onClick={prevSlide}
-          style={{
-            position: 'absolute', left: '1rem', top: '50%',
-            transform: 'translateY(-50%)',
-            backgroundColor: 'rgba(255,255,255,0.2)',
-            backdropFilter: 'blur(8px)',
-            color: 'white', padding: '0.75rem',
-            borderRadius: '9999px', border: 'none',
-            cursor: 'pointer', transition: 'background-color 0.3s', zIndex: 10,
-          }}
+          className='absolute left-4 top-1/2 bg-white/20 backdrop-blur-sm text-white p-3  rounded-full cursor-pointer z-10 -translate-y-1/2 transition-colors duration-300'
           onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.3)'}
           onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.2)'}
           aria-label="Previous slide"
         >
-          <svg style={{ width: '1.5rem', height: '1.5rem' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className='w-6 h-6' fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
 
         <button
           onClick={nextSlide}
-          style={{
-            position: 'absolute', right: '1rem', top: '50%',
-            transform: 'translateY(-50%)',
-            backgroundColor: 'rgba(255,255,255,0.2)',
-            backdropFilter: 'blur(8px)',
-            color: 'white', padding: '0.75rem',
-            borderRadius: '9999px', border: 'none',
-            cursor: 'pointer', transition: 'background-color 0.3s', zIndex: 10,
-          }}
+          className='absolute right-4 top-1/2 bg-white/20 backdrop-blur-sm text-white p-3  rounded-full cursor-pointer z-10 -translate-y-1/2 transition-colors duration-300'
           onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.3)'}
           onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.2)'}
           aria-label="Next slide"
         >
-          <svg style={{ width: '1.5rem', height: '1.5rem' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className='w-6 h-6 ' fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
 
         <div
-          style={{
-            position: 'absolute',
-            bottom: '5rem',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            display: 'flex',
-            gap: '0.75rem',
-            zIndex: 10,
-          }}
+          className='absolute bottom-20 left-1/2 flex gap-3 z-10 -translate-x-1/2'
         >
-          {slides.map((_, index) => (
+          {heroSlides.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              style={{
-                height: '0.75rem',
-                width: index === currentSlide ? '2rem' : '0.75rem',
-                backgroundColor: index === currentSlide ? '#d4a574' : 'rgba(255,255,255,0.5)',
-                borderRadius: '9999px',
-                border: 'none',
-                cursor: 'pointer',
-                transition: 'all 0.3s',
-              }}
+              className={clsx(
+                'h-2 w-8 rounded-full cursor-pointer transition-all duration-300',
+                index === currentSlide ? 'bg-accent scale-110' : 'bg-white/30 hover:bg-white/60'
+              )}
               onMouseEnter={(e) => { if (index !== currentSlide) e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.75)'; }}
               onMouseLeave={(e) => { if (index !== currentSlide) e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.5)'; }}
               aria-label={`Go to slide ${index + 1}`}
@@ -186,8 +131,7 @@ const Hero = () => {
           ))}
         </div>
          
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
+                
             
 
       </div>
